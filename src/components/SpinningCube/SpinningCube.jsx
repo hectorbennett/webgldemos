@@ -94,7 +94,7 @@ const main = () => {
   requestAnimationFrame(render);
 };
 
-export const Gears = (props) => {
+export const SpinningCube = (props) => {
   useEffect(() => {
     main();
   }, []);

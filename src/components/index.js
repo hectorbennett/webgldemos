@@ -1,1 +1,1 @@
-export { Gears } from "./Gears";
+export { SpinningCube } from "./SpinningCube";
