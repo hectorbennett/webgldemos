@@ -1,1 +1,1 @@
-export { Gears } from "./Gears";
+export { Gears } from "./Gears.jsx";

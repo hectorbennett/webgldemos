@@ -35,6 +35,10 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-string": "^3.0.0",
+    "rollup-plugin-terser": "^7.0.2",
     "twgl.js": "^4.21.2"
   }
 }

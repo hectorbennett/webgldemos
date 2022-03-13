@@ -2,6 +2,12 @@ import React, { useEffect } from "react";
 
 import * as twgl from "twgl.js";
 
+import fs from "./fs.glsl";
+import vs from "./vs.glsl";
+
+console.log(fs);
+console.log(vs);
+
 const main = () => {
   const m4 = twgl.m4;
   const gl = document.querySelector("#glcanvas").getContext("webgl");
@@ -93,9 +99,10 @@ export const Gears = (props) => {
     main();
   }, []);
   return (
-    <>
-      <script></script>
+    <div>
+      <script id="fs" type="notjs">{fs}</script>
+      <script id="vs" type="notjs">{vs}</script>
       <canvas id="glcanvas" width="640" height="480" />
-    </>
+    </div>
   );
 };
