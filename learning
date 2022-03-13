@@ -1,0 +1,31 @@
+# glossary
+
+resterization engine
+
+shader
+
+vertex shader
+
+fragment shader
+
+program
+
+attributes
+
+buffers
+
+Clip space
+
+precision (fragment shader)
+
+vec4
+
+gl_Position
+
+indices
+
+arrays:
+ - position
+ - normal
+ - tex
+ - indices
