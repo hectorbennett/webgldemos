@@ -5,6 +5,10 @@ import chroma from "chroma-js";
 import fs from "./shaders/fs.glsl";
 import vs from "./shaders/vs.glsl";
 
+import createGearBufferInfo from "./createGearBufferInfo.js";
+
+console.log(createGearBufferInfo);
+
 export const Primitives = (props) => {
   const canvasRef = useRef();
   useEffect(() => {
@@ -14,15 +18,42 @@ export const Primitives = (props) => {
     const programInfo = twgl.createProgramInfo(gl, [vs, fs]);
 
     const shapes = [
-      twgl.primitives.createCubeBufferInfo(gl, 2),
-      twgl.primitives.createSphereBufferInfo(gl, 1, 24, 12),
-      twgl.primitives.createPlaneBufferInfo(gl, 2, 2),
-      twgl.primitives.createTruncatedConeBufferInfo(gl, 1, 0, 2, 24, 1),
-      twgl.primitives.createCresentBufferInfo(gl, 1, 1, 0.5, 0.1, 24),
-      twgl.primitives.createCylinderBufferInfo(gl, 1, 2, 24, 2),
-      twgl.primitives.createDiscBufferInfo(gl, 1, 24),
-      twgl.primitives.createTorusBufferInfo(gl, 1, 0.4, 24, 12),
+      // twgl.primitives.createCubeBufferInfo(gl, 2),
+      // twgl.primitives.createSphereBufferInfo(gl, 1, 24, 12),
+      // twgl.primitives.createPlaneBufferInfo(gl, 2, 2),
+      // twgl.primitives.createTruncatedConeBufferInfo(gl, 1, 0, 2, 24, 1),
+      // twgl.primitives.createCresentBufferInfo(gl, 1, 1, 0.5, 0.1, 24),
+      // twgl.primitives.createCylinderBufferInfo(gl, 1, 2, 24, 2),
+      // twgl.primitives.createDiscBufferInfo(gl, 1, 24),
+      // twgl.primitives.createTorusBufferInfo(gl, 1, 0.4, 24, 12),
+      createGearBufferInfo(gl, {
+        inner_radius: 1,
+        outer_radius: 2,
+        width: 0.5,
+        teeth: 10,
+        tooth_depth: 0.1,
+        radius: 1,
+        thickness: 0.4,
+        radialSubdivisions: 24,
+        bodySubdivisions: 12,
+        startAngle: 0,
+        endAngle: 0,
+      }),
+      // twgl.createBufferInfoFromArrays(gl, {
+      //   position: {
+      //     numComponents: 3,
+      //     data: [0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0],
+      //   },
+      //   texcoord: { numComponents: 2, data: [0, 0, 0, 1, 1, 0, 1, 1] },
+      //   normal: {
+      //     numComponents: 3,
+      //     data: [0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1],
+      //   },
+      //   indices: { numComponents: 3, data: [0, 1, 2, 1, 2, 3] },
+      // }),
     ];
+
+    console.log(shapes);
 
     function rand(min, max) {
       return min + Math.random() * (max - min);
