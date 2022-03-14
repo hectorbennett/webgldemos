@@ -31,7 +31,7 @@ export const Primitives = (props) => {
         outer_radius: 2,
         width: 0.5,
         teeth: 10,
-        tooth_depth: 0.1,
+        tooth_depth: 0.5,
         radius: 1,
         thickness: 0.4,
         radialSubdivisions: 24,
@@ -77,7 +77,7 @@ export const Primitives = (props) => {
 
     const objects = [];
     const drawObjects = [];
-    const numObjects = 100;
+    const numObjects = 30;
     const baseHue = rand(0, 360);
     for (let ii = 0; ii < numObjects; ++ii) {
       const uniforms = {
