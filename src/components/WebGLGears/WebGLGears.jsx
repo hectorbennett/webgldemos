@@ -133,12 +133,7 @@ export const WebGLGears = (props) => {
   }, []);
   return (
     <div>
-      <canvas
-        ref={canvasRef}
-        width={props.width}
-        height={props.height}
-        style={{ border: "2px solid white" }}
-      />
+      <canvas {...props} ref={canvasRef} />
     </div>
   );
 };
