@@ -131,9 +131,5 @@ export const WebGLGears = (props) => {
     }
     requestAnimationFrame(render);
   }, []);
-  return (
-    <div>
-      <canvas {...props} ref={canvasRef} />
-    </div>
-  );
+  return <canvas {...props} ref={canvasRef} />;
 };

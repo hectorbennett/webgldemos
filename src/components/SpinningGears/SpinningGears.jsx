@@ -121,9 +121,5 @@ export const SpinningGears = (props) => {
     }
     requestAnimationFrame(render);
   }, []);
-  return (
-    <div>
-      <canvas ref={canvasRef} width={props.width} height={props.height} />
-    </div>
-  );
+  return <canvas {...props} ref={canvasRef} />;
 };
