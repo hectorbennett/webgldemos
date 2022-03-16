@@ -1,6 +1,6 @@
 {
   "name": "@hectorbennett/webgldemos",
-  "version": "0.0.9",
+  "version": "0.0.11",
   "description": "Some WebGL demos!",
   "repository": {
     "type": "git",
