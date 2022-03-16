@@ -99,7 +99,7 @@ export const SpinningCube = (props) => {
   }, []);
   return (
     <div>
-      <canvas ref={canvasRef} width="640" height="480" />
+      <canvas ref={canvasRef} width={props.width} height={props.height} />
     </div>
   );
 };

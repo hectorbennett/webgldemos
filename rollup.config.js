@@ -9,7 +9,6 @@ const packageJson = require("./package.json");
 
 export default [
   {
-    // preserveModules: true,
     input: "src/index.js",
     output: [
       {
@@ -26,13 +25,7 @@ export default [
     plugins: [
       peerDepsExternal(),
       resolve({ extensions: [".jsx", ".js"] }),
-      string({
-        // Required to be specified
-        include: "**/*.glsl",
-
-        // Undefined by default
-        // exclude: ["**/index.html"]
-      }),
+      string({ include: "**/*.glsl" }),
       commonjs(),
       babel({
         extensions: [".jsx", ".js", ".tsx"],

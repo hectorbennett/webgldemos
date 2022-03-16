@@ -33,14 +33,6 @@ function createGearVertices({
   const r2 = outer_radius + tooth_depth / 2.0;
 
   const da = (2.0 * Math.PI) / teeth / 4.0;
-  // console.log(teeth);
-  // if (teeth % 2 === 0) {
-  //   console.log("even");
-
-  // } else {
-  //   console.log("odd");
-  //   da = 1;
-  // }
 
   var positions = [];
   let normals = [];
@@ -77,7 +69,7 @@ function createGearVertices({
     const n_tooth_left = v3.cross(v3.subtract(p8, p1), v3.subtract(p1, p2));
     const n_tooth_right = v3.cross(v3.subtract(p11, p4), v3.subtract(p4, p3));
     const n_gap_top = [r1 * Math.cos(a_e), r1 * Math.sin(a_e), 0];
-    const n_bottom = [r1 * Math.cos(a_e), r1 * -Math.sin(a_e), 0];
+    const n_bottom = [r1 * Math.cos(a_e), r1 * Math.sin(a_e), 0];
 
     /* front */
     // 0

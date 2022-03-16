@@ -3,13 +3,13 @@ import * as twgl from "twgl.js";
 import chroma from "chroma-js";
 import fs from "./shaders/fs.glsl";
 import vs from "./shaders/vs.glsl";
-import createGearBufferInfo from "./createGearBufferInfo.js";
+import { createGearBufferInfo } from "../../utils";
 
 function rand(min, max) {
   return min + Math.random() * (max - min);
 }
 
-export const WebGLGears = (props) => {
+export const SpinningGears = (props) => {
   const canvasRef = useRef();
   useEffect(() => {
     twgl.setDefaults({ attribPrefix: "a_" });
@@ -123,7 +123,7 @@ export const WebGLGears = (props) => {
   }, []);
   return (
     <div>
-      <canvas ref={canvasRef} width="640" height="480" />
+      <canvas ref={canvasRef} width={props.width} height={props.height} />
     </div>
   );
 };

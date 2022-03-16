@@ -1,7 +1,7 @@
 {
-  "name": "webgl-test",
+  "name": "webgldemos",
   "version": "0.0.1",
-  "description": "",
+  "description": "Some WebGL demos!",
   "scripts": {
     "rollup": "rollup -c",
     "storybook": "start-storybook -p 6006",
