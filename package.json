@@ -1,7 +1,14 @@
 {
-  "name": "webgldemos",
-  "version": "0.0.1",
+  "name": "@hectorbennett/webgldemos",
+  "version": "0.0.4",
   "description": "Some WebGL demos!",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hectorbennett/webgldemos"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "scripts": {
     "rollup": "rollup -c",
     "storybook": "start-storybook -p 6006",
