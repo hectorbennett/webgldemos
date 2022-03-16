@@ -17,20 +17,6 @@ export const WebGLGears = (props) => {
     const gl = canvasRef.current.getContext("webgl");
     const programInfo = twgl.createProgramInfo(gl, [vs, fs]);
 
-    /* Add randomised gears*/
-    var shapes = [];
-    for (let i = 0; i <= 10; i++) {
-      shapes.push(
-        createGearBufferInfo(gl, {
-          inner_radius: rand(0.5, 1),
-          outer_radius: rand(1.1, 2),
-          width: rand(0.2, 1),
-          teeth: parseInt(rand(5, 15)),
-          tooth_depth: rand(0.2, 0.5),
-        })
-      );
-    }
-
     // Shared values
     const lightWorldPosition = [1, 8, -10];
     const lightColor = [1, 1, 1, 1];
@@ -47,36 +33,63 @@ export const WebGLGears = (props) => {
       ],
     });
 
-    const objects = [];
-    const drawObjects = [];
-    const numObjects = 100;
     const baseHue = rand(0, 360);
-    for (let ii = 0; ii < numObjects; ++ii) {
-      const uniforms = {
-        u_lightWorldPos: lightWorldPosition,
-        u_lightColor: lightColor,
-        u_diffuseMult: chroma.hsv((baseHue + rand(0, 360)) % 360, 14, 1).gl(),
-        u_specular: [0.5, 0.5, 0.5, 0.5],
-        u_shininess: 50,
-        u_specularFactor: 1,
-        u_diffuse: tex,
-        u_viewInverse: camera,
-        u_world: m4.identity(),
-        u_worldInverseTranspose: m4.identity(),
-        u_worldViewProjection: m4.identity(),
-      };
-      drawObjects.push({
+
+    const uniforms = {
+      u_lightWorldPos: lightWorldPosition,
+      u_lightColor: lightColor,
+      u_diffuseMult: chroma.hsv((baseHue + rand(0, 360)) % 360, 14, 1).gl(),
+      u_specular: [0.5, 0.5, 0.5, 0.5],
+      u_shininess: 50,
+      u_specularFactor: 1,
+      u_diffuse: tex,
+      u_viewInverse: camera,
+      u_world: m4.identity(),
+      u_worldInverseTranspose: m4.identity(),
+      u_worldViewProjection: m4.identity(),
+    };
+
+    const objects = [
+      // red
+      {
         programInfo: programInfo,
-        bufferInfo: shapes[ii % shapes.length],
-        uniforms: uniforms,
-      });
-      objects.push({
         translation: [rand(-10, 10), rand(-10, 10), rand(-10, 10)],
-        ySpeed: rand(0.1, 0.3),
-        zSpeed: rand(0.1, 0.3),
+        bufferInfo: createGearBufferInfo(gl, {
+          inner_radius: 1.0,
+          outer_radius: 4.0,
+          width: 1.0,
+          teeth: 20,
+          tooth_depth: 0.7,
+        }),
         uniforms: uniforms,
-      });
-    }
+      },
+      // green
+      {
+        programInfo: programInfo,
+        translation: [rand(-10, 10), rand(-10, 10), rand(-10, 10)],
+        bufferInfo: createGearBufferInfo(gl, {
+          inner_radius: 0.5,
+          outer_radius: 2.0,
+          width: 2.0,
+          teeth: 10,
+          tooth_depth: 0.7,
+        }),
+        uniforms: uniforms,
+      },
+      // blue
+      {
+        programInfo: programInfo,
+        translation: [rand(-10, 10), rand(-10, 10), rand(-10, 10)],
+        bufferInfo: createGearBufferInfo(gl, {
+          inner_radius: 1.3,
+          outer_radius: 2.0,
+          width: 0.5,
+          teeth: 10,
+          tooth_depth: 0.7,
+        }),
+        uniforms: uniforms,
+      },
+    ];
 
     function render(time) {
       time *= 0.001;
@@ -104,10 +117,10 @@ export const WebGLGears = (props) => {
         const uni = obj.uniforms;
         const world = uni.u_world;
         m4.identity(world);
-        m4.rotateY(world, time * obj.ySpeed, world);
-        m4.rotateZ(world, time * obj.zSpeed, world);
-        m4.translate(world, obj.translation, world);
-        m4.rotateX(world, time, world);
+        // m4.rotateY(world, time * obj.ySpeed, world);
+        // m4.rotateZ(world, time * obj.zSpeed, world);
+        // m4.translate(world, obj.translation, world);
+        // m4.rotateX(world, time, world);
         m4.transpose(
           m4.inverse(world, uni.u_worldInverseTranspose),
           uni.u_worldInverseTranspose
@@ -115,7 +128,7 @@ export const WebGLGears = (props) => {
         m4.multiply(viewProjection, uni.u_world, uni.u_worldViewProjection);
       });
 
-      twgl.drawObjectList(gl, drawObjects);
+      twgl.drawObjectList(gl, objects);
 
       requestAnimationFrame(render);
     }
