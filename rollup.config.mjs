@@ -5,19 +5,19 @@ import { terser } from "rollup-plugin-terser";
 import peerDepsExternal from "rollup-plugin-peer-deps-external";
 import { string } from "rollup-plugin-string";
 
-const packageJson = require("./package.json");
+import pkg from "./package.json" assert { type: "json" };
 
 export default [
   {
     input: "src/index.js",
     output: [
       {
-        file: packageJson.main,
+        file: pkg.main,
         format: "cjs",
         sourcemap: true,
       },
       {
-        file: packageJson.module,
+        file: pkg.module,
         format: "esm",
         sourcemap: true,
       },
